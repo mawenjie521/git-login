@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "AdminLogin";
+}
+
+<h2>AdminLogin</h2>
+
+<form method="post" action="/SysAdmin/AdminLogin">
+    用户名：<input type="text" name="loginId">
+    密码： <input type="password" name="loginPwd">
+    <input type="submit" value="登录">
+    @ViewBag.userName
+</form>
