@@ -14,7 +14,7 @@ namespace login.Controllers
 
         public ActionResult Index()
         {
-            return View("AdminLogin");
+            return View("Register");
         }
         public ActionResult AdminLogin()
         {
@@ -35,6 +35,27 @@ namespace login.Controllers
                 ViewBag.userName = "用户名或密码错误";
             }
             return View("first");
+        }
+        public ActionResult Register()
+        {
+            int loginId = Convert.ToInt32(Request.Params["userName"]);
+            string loginPwd = Request.Params["userPwd"].ToString();
+            string adminName = "mawenjie";
+            SysAdmin registUser=new SysAdmin(){
+                LoginId=loginId,
+                LoginPwd=loginPwd,
+                AdminName=adminName
+            };
+            SysAdmin user = new SysAdminService().AdminRegister(registUser);
+            if (user != null)
+            {
+                ViewBag.userName = user.AdminName;
+            }
+            else
+            {
+                ViewBag.userName = "注册失败";
+            }
+            return View("Register");
         }
     }
 }
